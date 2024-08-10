@@ -1,23 +1,22 @@
 const content = document.querySelector(".content");
 const coffees = [
-  { name: "Foyer", image: "images/coffee1.jpg" },
-  { name: "Canteen", image: "images/coffee2.jpg" },
-  { name: "Library", image: "images/coffee3.jpg" },
-  { name: "Carpark", image: "images/coffee4.jpg" },
-  { name: "Side Gate", image: "images/coffee5.jpg" },
-  { name: "Main Gate", image: "images/coffee6.jpg" },
-  { name: "Corridor", image: "images/coffee7.jpg" },
-  { name: "Hall", image: "images/coffee8.jpg" },
-  { name: "Staircase", image: "images/coffee9.jpg" },
+  { name: "Foyer"},
+  { name: "Canteen"},
+  { name: "Library"},
+  { name: "Carpark"},
+  { name: "Side Gate"},
+  { name: "Main Gate" },
+  { name: "Corridor"},
+  { name: "Hall"},
+  { name: "Staircase"},
 ];
 
 const showCoffees = () => {
   let output = "";
   coffees.forEach(
-    ({ name, image }) =>
+    ({ name }) =>
       (output += `
               <div class="card">
-                <img class="card--avatar" src=${image} />
                 <h1 class="card--title">${name}</h1>
                 <a class="card--link" href="#">View Members On-Duty</a>
               </div>
