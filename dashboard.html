@@ -1,0 +1,18 @@
+<script>
+    // Check if the user is signed in
+    if (!isSignedIn()) {
+        // Redirect to index.html
+        window.location.href = "index.html";
+    }
+
+    // Function to check if the user is signed in
+    function isSignedIn() {
+        // Get the user's ID token
+        var idToken = localStorage.getItem("responsePayload").sub;
+        // Check if the user is signed in
+        if (idToken) {
+            return true;
+        }
+        return false;
+    }
+</script>

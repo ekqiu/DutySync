@@ -46,18 +46,15 @@ function handleCredentialResponse(response) {
 
   // Ensure the element exists before setting its innerHTML
   const contentElement = document.getElementById("content");
-  if (contentElement) {
-    contentElement.innerHTML = `
-      <div>
-        <p>ID: ${responsePayload.sub}</p>
-        <p>Name: ${responsePayload.name}</p>
-        <p>Image URL: <img src="${responsePayload.picture}" alt="Profile Image"></p>
-        <p>Email: ${responsePayload.email}</p>
-      </div>
-    `;
-  } else {
-    console.error("Element with ID 'content' not found.");
-  }
+  contentElement.innerHTML = `
+    <div>
+      <p>ID: ${responsePayload.sub}</p>
+      <p>Name: ${responsePayload.name}</p>
+      <p>Image URL: <img src="${responsePayload.picture}" alt="Profile Image"></p>
+      <p>Email: ${responsePayload.email}</p>
+    </div>
+  `;
+  localStorage.setItem("responsePayload", JSON.stringify(responsePayload));
 }
 
 function decodeJwtResponse(token) {
