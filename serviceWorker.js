@@ -1,10 +1,5 @@
 const staticDevCoffee = "dev-coffee-site-v1";
-const assets = [
-  "/",
-  "/index.html",
-  "/css/style.css",
-  "/js/app.js",
-];
+const assets = ["/", "/index.html", "/css/style.css", "/js/app.js"];
 
 self.addEventListener("install", (installEvent) => {
   installEvent.waitUntil(
@@ -17,18 +12,26 @@ self.addEventListener("install", (installEvent) => {
 self.addEventListener("fetch", (fetchEvent) => {
   fetchEvent.respondWith(
     caches.match(fetchEvent.request).then((res) => {
-      return res || fetch(fetchEvent.request);
-    })
-  );
-});
-
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    fetch(event.request).catch(() => {
-      return new Response('Network error occurred', {
-        status: 408,
-        statusText: 'Network error'
-      });
+      if (res) {
+        return res;
+      }
+      return fetch(fetchEvent.request)
+        .then((response) => {
+          // Check if the request is cross-origin
+          if (!response.ok && response.type === "opaque") {
+            return new Response("Cross-Origin Request Blocked", {
+              status: 403,
+              statusText: "Cross-Origin Request Blocked",
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          return new Response("Network error occurred", {
+            status: 408,
+            statusText: "Network error",
+          });
+        });
     })
   );
 });
