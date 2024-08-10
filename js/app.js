@@ -1,5 +1,5 @@
 const content = document.querySelector(".content");
-const coffees = [
+const allocations = [
   { name: "Foyer"},
   { name: "Canteen"},
   { name: "Library"},
@@ -11,9 +11,9 @@ const coffees = [
   { name: "Staircase"},
 ];
 
-const showCoffees = () => {
+const displayAllocations = () => {
   let output = "";
-  coffees.forEach(
+  allocations.forEach(
     ({ name }) =>
       (output += `
               <div class="card">
@@ -25,7 +25,9 @@ const showCoffees = () => {
   content.innerHTML = output;
 };
 
-document.addEventListener("DOMContentLoaded", showCoffees);
+if (window.location.href.includes("dashboard.html")) {
+  document.addEventListener("DOMContentLoaded", displayAllocations);
+}
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
@@ -39,19 +41,12 @@ if ("serviceWorker" in navigator) {
 function handleCredentialResponse(response) {
   const responsePayload = decodeJwtResponse(response.credential);
 
-  console.log("ID: " + responsePayload.sub); // Do not send to your backend! Use an ID token instead.
-  console.log("Name: " + responsePayload.name);
-  console.log("Image URL: " + responsePayload.picture);
-  console.log("Email: " + responsePayload.email); // This is null if the 'email' scope is not present.
-
+  window.location.href = "dashboard.html";
   // Ensure the element exists before setting its innerHTML
-  const contentElement = document.getElementById("content");
+  const contentElement = document.getElementById("welcome");
   contentElement.innerHTML = `
     <div>
-      <p>ID: ${responsePayload.sub}</p>
-      <p>Name: ${responsePayload.name}</p>
-      <p>Image URL: <img src="${responsePayload.picture}" alt="Profile Image"></p>
-      <p>Email: ${responsePayload.email}</p>
+      <h1>Welcome, ${responsePayload.name}!</h1> <img src="${responsePayload.picture}" alt="Profile Image"></p>
     </div>
   `;
   localStorage.setItem("responsePayload", JSON.stringify(responsePayload));
