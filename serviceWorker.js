@@ -21,3 +21,14 @@ self.addEventListener("fetch", (fetchEvent) => {
     })
   );
 });
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    fetch(event.request).catch(() => {
+      return new Response('Network error occurred', {
+        status: 408,
+        statusText: 'Network error'
+      });
+    })
+  );
+});
