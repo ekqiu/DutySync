@@ -46,7 +46,7 @@ function handleCredentialResponse(response) {
     const contentElement = document.getElementById("welcome");
     contentElement.innerHTML = `
     <div>
-      <h1>Welcome, ${responsePayload.name}!</h1> <img src="${responsePayload.picture}" alt="Profile Image"></p>
+      <p><h1>Welcome, ${responsePayload.name}!</h1> <img src="${responsePayload.picture}" alt="Profile Image"></p>
     </div>
     `;
   });
