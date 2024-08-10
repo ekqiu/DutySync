@@ -24,15 +24,6 @@ nav {
     align-items: center;
 }
 
-ul {
-    list-style: none;
-    display: flex;
-}
-
-li {
-    margin-right: 1rem;
-}
-
 h1 {
     color: #e74c3c;
     margin-bottom: 0.5rem;
@@ -91,24 +82,4 @@ a {
 .footer {
     background-color: #d4d4d4;
     width: 100%;
-}
-
-.list {
-    list-style:none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-}
-
-.item {
-    margin-right: 1rem;
-    font-size: 1.2rem;
-    color: #222;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom-color 0.3s ease;
-}
-
-.item:hover {
-    border-bottom-color: #e74c3c;
 }

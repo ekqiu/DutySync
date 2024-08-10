@@ -21,51 +21,57 @@
     <link rel="apple-touch-icon" href="images/icons/icon-512x512.png" />
     <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
     <meta name="theme-color" content="#db4938" />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="AIzaSyCElngmST1ydtIbhMEJDl16y4mgfl1eRU4.googleusercontent.com">
 </head>
 
 <body>
-    <nav
-        class="navbar navbar-expand-lg navbar-light bg-light d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+<nav
+    class="navbar navbar-expand-lg navbar-light bg-light d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <h1>Dutify</h1>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+            aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarScroll">
+            <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                 <li class="nav-item">
                     <a class="nav-link" href="index.html">Home</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Features</a>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Features</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contact.html">Contact</a>
                 </li>
-            </ul>
+                <li class="nav-item">
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                </li>
         </div>
-    </nav>
+    </div>
+</nav>
     <main>
         <div class="container">
             <h2>Features</h2>
             <p>Here are some of the features of Dutify:</p>
-            <ul class="list">
-                <li class="item">Simple and easy to use</li>
-                <li class="item">Fast and responsive</li>
-                <li class="item">Works offline</li>
-                <li class="item">Can be installed on your device</li>
+            <ul>
+                <li>Simple and easy to use</li>
+                <li>Fast and responsive</li>
+                <li>Works offline</li>
+                <li>Can be installed on your device</li>
             </ul>
         </div>
         <div class="container">
             <h2>Coming Soon</h2>
             <p>Here are some features that we are working on:</p>
-            <ul class="list">
-                <li class="item">Dark mode</li>
-                <li class="item">Notifications</li>
-                <li class="item">More customization options</li>
-                <li class="item">Integration with Google Sign-In</li>
+            <ul>
+                <li>Dark mode</li>
+                <li>Notifications</li>
+                <li>More customization options</li>
+                <li>Integration with Google Sign-In</li>
             </ul>
         </div>
 
@@ -93,6 +99,12 @@
         </footer>
     </main>
     <script src="js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
