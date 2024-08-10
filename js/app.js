@@ -42,6 +42,14 @@ function onSignIn(googleUser) {
   console.log("Name: " + profile.getName());
   console.log("Image URL: " + profile.getImageUrl());
   console.log("Email: " + profile.getEmail()); // This is null if the 'email' scope is not present.
+  content.innerHTML = `
+    <div>
+      <p>ID: ${profile.getId()}</p>
+      <p>Name: ${profile.getName()}</p>
+      <p>Image URL: ${profile.getImageUrl()}</p>
+      <p>Email: ${profile.getEmail()}</p>
+    </div>
+  `;
 }
 
 function signOut() {
