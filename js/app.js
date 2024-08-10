@@ -42,7 +42,7 @@ function onSignIn(googleUser) {
   console.log("Name: " + profile.getName());
   console.log("Image URL: " + profile.getImageUrl());
   console.log("Email: " + profile.getEmail()); // This is null if the 'email' scope is not present.
-  content.innerHTML = `
+  document.getElementById("content").innerHTML = `
     <div>
       <p>ID: ${profile.getId()}</p>
       <p>Name: ${profile.getName()}</p>
@@ -56,5 +56,9 @@ function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
     console.log("User signed out.");
+    // Check if the window is closed
+    if (window.opener) {
+      window.opener.postMessage("signedOut", "*");
+    }
   });
 }
