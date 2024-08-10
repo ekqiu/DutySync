@@ -42,13 +42,14 @@ function handleCredentialResponse(response) {
   const responsePayload = decodeJwtResponse(response.credential);
 
   window.location.href = "dashboard.html";
-  // Ensure the element exists before setting its innerHTML
-  const contentElement = document.getElementById("welcome");
-  contentElement.innerHTML = `
+  document.addEventListener("DOMContentLoaded", () => {
+    const contentElement = document.getElementById("welcome");
+    contentElement.innerHTML = `
     <div>
       <h1>Welcome, ${responsePayload.name}!</h1> <img src="${responsePayload.picture}" alt="Profile Image"></p>
     </div>
-  `;
+    `;
+  });
   localStorage.setItem("responsePayload", JSON.stringify(responsePayload));
 }
 
