@@ -43,14 +43,21 @@ function handleCredentialResponse(response) {
   console.log("Name: " + responsePayload.name);
   console.log("Image URL: " + responsePayload.picture);
   console.log("Email: " + responsePayload.email); // This is null if the 'email' scope is not present.
-  document.getElementById("content").innerHTML = `
-    <div>
-      <p>ID: ${responsePayload.sub}</p>
-      <p>Name: ${responsePayload.name}</p>
-      <p>Image URL: <img src="${responsePayload.picture}" alt="Profile Image"></p>
-      <p>Email: ${responsePayload.email}</p>
-    </div>
-  `;
+
+  // Ensure the element exists before setting its innerHTML
+  const contentElement = document.getElementById("content");
+  if (contentElement) {
+    contentElement.innerHTML = `
+      <div>
+        <p>ID: ${responsePayload.sub}</p>
+        <p>Name: ${responsePayload.name}</p>
+        <p>Image URL: <img src="${responsePayload.picture}" alt="Profile Image"></p>
+        <p>Email: ${responsePayload.email}</p>
+      </div>
+    `;
+  } else {
+    console.error("Element with ID 'content' not found.");
+  }
 }
 
 function decodeJwtResponse(token) {
