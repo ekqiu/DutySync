@@ -21,15 +21,14 @@
     <link rel="apple-touch-icon" href="images/icons/icon-512x512.png" />
     <meta name="apple-mobile-web-app-status-bar" content="#89c1da" />
     <meta name="theme-color" content="#89c1da" />
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="123316970403-lq0mb7tt0n20j4he2tnjovpovn7b92ia.apps.googleusercontent.com">
+    <script src="https://accounts.google.com/gsi/client" async></script>
 </head>
 
 <body>
 <nav
     class="navbar navbar-expand-lg navbar-light bg-light d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.html">
             <h1>Dutify</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
@@ -48,8 +47,15 @@
                     <a class="nav-link active" aria-current="page" href="#">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    <div id="g_id_onload" data-client_id="123316970403-lq0mb7tt0n20j4he2tnjovpovn7b92ia.apps.googleusercontent.com"
+                        data-context="signin" data-ux_mode="popup" data-callback="handleCredentialResponse" data-auto_prompt="false">
+                    </div>
+                
+                    <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline" data-text="signin"
+                        data-size="large" data-logo_alignment="left">
+                    </div>
                 </li>
+            </ul>
         </div>
     </div>
 </nav>
