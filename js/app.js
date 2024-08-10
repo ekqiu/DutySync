@@ -1,4 +1,4 @@
-const container = document.querySelector(".container");
+const content = document.querySelector(".content");
 const coffees = [
   { name: "Foyer", image: "images/coffee1.jpg" },
   { name: "Canteen", image: "images/coffee2.jpg" },
@@ -23,7 +23,7 @@ const showCoffees = () => {
               </div>
               `)
   );
-  container.innerHTML = output;
+  content.innerHTML = output;
 };
 
 document.addEventListener("DOMContentLoaded", showCoffees);
