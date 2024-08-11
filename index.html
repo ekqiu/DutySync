@@ -134,7 +134,7 @@
 
             // Get FCM token
             function getToken() {
-                messaging.getToken({ vapidKey: "BKeqWzJkekLZMjVhY5rEcqmTLqs5eqfGVgk9e0gybu_vNnPE85aJMGjulDfCqJfu_BNWZTmJHJANVEaUt9Oe1c4" }).then((currentToken) => {
+                getToken(messaging, { vapidKey: "BKeqWzJkekLZMjVhY5rEcqmTLqs5eqfGVgk9e0gybu_vNnPE85aJMGjulDfCqJfu_BNWZTmJHJANVEaUt9Oe1c4" }).then((currentToken) => {
                     if (currentToken) {
                         console.log("FCM Token:", currentToken);
                         // Send the token to your server
