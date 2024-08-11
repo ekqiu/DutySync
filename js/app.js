@@ -192,6 +192,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const nameToSearch = responsePayload.name;
   const searchResults = searchName(nameToSearch);
   const nextDiv = document.getElementById("next");
-  console.log(searchResults);
-  nextDiv.innerHTML = JSON.stringify(searchResults);
+  nextDiv.innerHTML = "";
+
+  searchResults.forEach(result => {
+    const { date, time, name } = result;
+    const div = document.createElement("div");
+    div.textContent = `On ${date} at ${time}, you have ${name} duty.`;
+    nextDiv.appendChild(div);
+  });
 });
