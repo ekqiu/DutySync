@@ -1,27 +1,28 @@
 const content = document.querySelector(".content");
 const allocations = [
-  { name: "Foyer"},
-  { name: "Canteen"},
-  { name: "Library"},
-  { name: "Carpark"},
-  { name: "Side Gate"},
-  { name: "Main Gate" },
-  { name: "Corridor"},
-  { name: "Hall"},
-  { name: "Staircase"},
+  { date: "8/11/2024", deployment: [
+    { name: "Foyer", member: "John" },
+    { name: "Canteen", member: "Jane" },
+    { name: "Library", member: "Mike" },
+    { name: "Carpark", member: "Evan Khee Bo Han (Bpghs)" },
+    { name: "Side Gate", member: "David" },
+    { name: "Main Gate", member: "Sarah" },
+    { name: "Corridor", member: "Alex" },
+    { name: "Hall", member: "Olivia" },
+    { name: "Staircase", member: "Daniel" }
+  ]}
 ];
 
 const displayAllocations = () => {
-  let output = "";
-  allocations.forEach(
-    ({ name }) =>
-      (output += `
-              <div class="card">
-                <h1 class="card--title">${name}</h1>
-                <a class="card--link" href="#">View Members On-Duty</a>
-              </div>
-              `)
-  );
+  let output = `<div><h2>${date}</h2></div>`;
+  allocations.forEach(({ name, member }) => {
+    output += `
+      <div class="card">
+        <h1 class="card--title">${name}</h1>
+        <p class="card--member">${member}</p>
+      </div>
+    `;
+  });
   content.innerHTML = output;
 };
 

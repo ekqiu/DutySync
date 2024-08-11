@@ -1,6 +1,6 @@
 {
-  "name": "Dutify",
-  "short_name": "Dutify",
+  "name": "DutySync",
+  "short_name": "DutySync",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#fdfdfd",

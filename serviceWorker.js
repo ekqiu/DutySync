@@ -1,9 +1,11 @@
-const staticDutify = "dutify-v1";
-const assets = ["/", "/index.html", "/css/style.css", "/js/app.js", ];
+const staticDutySync = "dutysync-v1";
+const assets = ["/", "index.html", "/css/styles.css", "/js/app.js", "contact.html", "dashboard.html"
+  
+];
 
 self.addEventListener("install", (installEvent) => {
   installEvent.waitUntil(
-    caches.open(staticDutify).then((cache) => {
+    caches.open(staticDutySync).then((cache) => {
       cache.addAll(assets);
     })
   );
