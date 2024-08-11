@@ -19,8 +19,15 @@ self.addEventListener("fetch", (fetchEvent) => {
       }
       return fetch(fetchEvent.request)
         .then((response) => {
-          // Check if the request is cross-origin
-          if (!response.ok && response.type === "opaque") {
+          // Allow cross-origin requests to specific domains
+          const allowedOrigins = ["https://accounts.google.com"];
+          const requestUrl = new URL(fetchEvent.request.url);
+
+          if (
+            !response.ok &&
+            response.type === "opaque" &&
+            !allowedOrigins.includes(requestUrl.origin)
+          ) {
             return new Response("Cross-Origin Request Blocked custom", {
               status: 403,
               statusText: "Cross-Origin Request Blocked custom",
