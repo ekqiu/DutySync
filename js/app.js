@@ -83,7 +83,7 @@ const displayAllocations = () => {
       <div>
         <h2>${date} ${time}</h2>
       </div>
-      <div class="grid-container">
+      <div class="content">
     `;
     deployment.forEach(({ name, member }) => {
       output += `
