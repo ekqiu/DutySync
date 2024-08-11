@@ -178,6 +178,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchName = (name) => {
     const results = allocations.filter((allocation) => {
       return allocation.deployment.some((member) => member.member === name);
+    }).map((allocation) => {
+      return {
+        date: allocation.date,
+        time: allocation.time,
+        name: allocation.deployment.find((member) => member.member === name).name
+      };
     });
     return results;
   };
