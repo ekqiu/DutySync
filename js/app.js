@@ -173,3 +173,17 @@ function signOut() {
   localStorage.removeItem("responsePayload");
   location.reload();
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const searchName = (name) => {
+    const results = allocations.filter((allocation) => {
+      return allocation.deployment.some((member) => member.member.includes(name));
+    });
+    return results;
+  };
+
+  const nameToSearch = "payload.name";
+  const searchResults = searchName(nameToSearch);
+  const nextDiv = document.getElementById("next");
+  nextDiv.innerHTML = JSON.stringify(searchResults);
+});
