@@ -14,7 +14,7 @@ const allocations = [
 ];
 
 const displayAllocations = () => {
-  let output = `<div><h2>${date}</h2></div>`;
+  let output = `<div><h2>${allocations.date}</h2></div>`;
   allocations.forEach(({ name, member }) => {
     output += `
       <div class="card">
@@ -29,8 +29,6 @@ const displayAllocations = () => {
 if (window.location.href.includes("dashboard.html")) {
   document.addEventListener("DOMContentLoaded", displayAllocations);
 }
-
-document.addEventListener("DOMContentLoaded", displayAllocations);
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
