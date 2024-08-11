@@ -21,9 +21,9 @@ self.addEventListener("fetch", (fetchEvent) => {
         .then((response) => {
           // Check if the request is cross-origin
           if (!response.ok && response.type === "opaque") {
-            return new Response("Cross-Origin Request Blocked", {
+            return new Response("Cross-Origin Request Blocked custom", {
               status: 403,
-              statusText: "Cross-Origin Request Blocked",
+              statusText: "Cross-Origin Request Blocked custom",
             });
           }
           return response;
