@@ -1,22 +1,91 @@
 const content = document.querySelector(".content");
 const allocations = [
-  { date: "8/11/2024", deployment: [
-    { name: "Foyer", member: "John" },
-    { name: "Canteen", member: "Jane" },
-    { name: "Library", member: "Mike" },
-    { name: "Carpark", member: "Evan Khee Bo Han (Bpghs)" },
-    { name: "Side Gate", member: "David" },
-    { name: "Main Gate", member: "Sarah" },
-    { name: "Corridor", member: "Alex" },
-    { name: "Hall", member: "Olivia" },
-    { name: "Staircase", member: "Daniel" }
-  ]}
+  {
+    date: "11/8/2024",
+    time: "8:00 AM",
+    deployment: [
+      { name: "Foyer", member: "John" },
+      { name: "Canteen", member: "Jane" },
+      { name: "Library", member: "Mike" },
+      { name: "Carpark", member: "Evan Khee Bo Han (Bpghs)" },
+      { name: "Side Gate", member: "David" },
+      { name: "Main Gate", member: "Sarah" },
+      { name: "Corridor", member: "Alex" },
+      { name: "Hall", member: "Olivia" },
+      { name: "Staircase", member: "Daniel" },
+    ],
+  },
+  {
+    date: "12/8/2024",
+    time: "8:00 AM",
+    deployment: [
+      { name: "Foyer", member: "John" },
+      { name: "Canteen", member: "Jane" },
+      { name: "Library", member: "Mike" },
+      { name: "Carpark", member: "Evan Khee Bo Han (Bpghs)" },
+      { name: "Side Gate", member: "David" },
+      { name: "Main Gate", member: "Sarah" },
+      { name: "Corridor", member: "Alex" },
+      { name: "Hall", member: "Olivia" },
+      { name: "Staircase", member: "Daniel" },
+    ],
+  },
+  {
+    date: "13/8/2024",
+    time: "8:00 AM",
+    deployment: [
+      { name: "Foyer", member: "John" },
+      { name: "Canteen", member: "Jane" },
+      { name: "Library", member: "Mike" },
+      { name: "Carpark", member: "Evan Khee Bo Han (Bpghs)" },
+      { name: "Side Gate", member: "David" },
+      { name: "Main Gate", member: "Sarah" },
+      { name: "Corridor", member: "Alex" },
+      { name: "Hall", member: "Olivia" },
+      { name: "Staircase", member: "Daniel" },
+    ],
+  },
+  {
+    date: "14/8/2024",
+    time: "8:00 AM",
+    deployment: [
+      { name: "Foyer", member: "John" },
+      { name: "Canteen", member: "Jane" },
+      { name: "Library", member: "Mike" },
+      { name: "Carpark", member: "Evan Khee Bo Han (Bpghs)" },
+      { name: "Side Gate", member: "David" },
+      { name: "Main Gate", member: "Sarah" },
+      { name: "Corridor", member: "Alex" },
+      { name: "Hall", member: "Olivia" },
+      { name: "Staircase", member: "Daniel" },
+    ],
+  },
+  {
+    date: "15/8/2024",
+    time: "8:00 AM",
+    deployment: [
+      { name: "Foyer", member: "John" },
+      { name: "Canteen", member: "Jane" },
+      { name: "Library", member: "Mike" },
+      { name: "Carpark", member: "Evan Khee Bo Han (Bpghs)" },
+      { name: "Side Gate", member: "David" },
+      { name: "Main Gate", member: "Sarah" },
+      { name: "Corridor", member: "Alex" },
+      { name: "Hall", member: "Olivia" },
+      { name: "Staircase", member: "Daniel" },
+    ],
+  },
 ];
 
 const displayAllocations = () => {
-  if (allocations[0]) {
-    let output = `<div><h2>${allocations[0].date}</h2></div>`;
-    allocations[0].deployment.forEach(({ name, member }) => {
+  allocations.forEach(({ date, time, deployment }) => {
+    let output = `
+      <div>
+        <h2>${date} ${time}</h2>
+      </div>
+      <div class="grid-container">
+    `;
+    deployment.forEach(({ name, member }) => {
       output += `
         <div class="card">
           <h1 class="card--title">${name}</h1>
@@ -24,8 +93,9 @@ const displayAllocations = () => {
         </div>
       `;
     });
-    content.innerHTML = output;
-  }
+    output += `</div>`;
+    content.innerHTML += output;
+  });
 };
 
 if (window.location.href.includes("dashboard.html")) {
@@ -76,8 +146,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <div>
         <img src="${responsePayload.picture}" alt="Profile Image" class="img-fluid" style="border-radius: 50%;">
       </div>
-      <div>
-        <h1 style="display: grid; align-items: center; margin-left: 15px;">Welcome, ${responsePayload.name}!</h1>
+      <div style="display: grid; align-items: center;">
+        <h1 style="margin-left: 15px;">Welcome, ${responsePayload.name}!</h1>
       </div>
       </div>
     `;
