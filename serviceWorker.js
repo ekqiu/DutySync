@@ -18,29 +18,6 @@ self.addEventListener("fetch", (fetchEvent) => {
         return res;
       }
       return fetch(fetchEvent.request)
-        .then((response) => {
-          // Allow cross-origin requests to specific domains
-          const allowedOrigins = ["https://accounts.google.com"];
-          const requestUrl = new URL(fetchEvent.request.url);
-
-          if (
-            !response.ok &&
-            response.type === "opaque" &&
-            !allowedOrigins.includes(requestUrl.origin)
-          ) {
-            return new Response("Cross-Origin Request Blocked custom", {
-              status: 403,
-              statusText: "Cross-Origin Request Blocked custom",
-            });
-          }
-          return response;
-        })
-        .catch(() => {
-          return new Response("Network error occurred", {
-            status: 408,
-            statusText: "Network error",
-          });
-        });
     })
   );
 });
