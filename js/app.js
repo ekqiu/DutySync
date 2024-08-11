@@ -73,12 +73,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const contentElement = document.getElementById("welcome");
     contentElement.innerHTML = `
       <div class="row">
-        <div class="col">
+      <div class="col">
+        <img src="${responsePayload.picture}" alt="Profile Image" class="img-fluid" style="border-radius: 50%;">
+      </div>
+      <div class="col">
         <h1>Welcome, ${responsePayload.name}!</h1>
-        </div>
-        <div class="col">
-        <img src="${responsePayload.picture}" alt="Profile Image" class="img-fluid">
-        </div>
+      </div>
       </div>
     `;
   }
