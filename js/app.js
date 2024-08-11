@@ -198,6 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const { date, time, name } = result;
     const div = document.createElement("div");
     div.textContent = `On ${date} at ${time}, you have ${name} duty.`;
+    div.classList.add("alert", "alert-info");
     nextDiv.appendChild(div);
   });
 });
