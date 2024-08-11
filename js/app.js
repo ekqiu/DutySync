@@ -72,9 +72,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (responsePayload) {
     const contentElement = document.getElementById("welcome");
     contentElement.innerHTML = `
-    <div>
-      <p><h1>Welcome, ${responsePayload.name}!</h1> <img src="${responsePayload.picture}" alt="Profile Image"></p>
-    </div>
+      <div class="row">
+        <div class="col">
+        <h1>Welcome, ${responsePayload.name}!</h1>
+        </div>
+        <div class="col">
+        <img src="${responsePayload.picture}" alt="Profile Image" class="img-fluid">
+        </div>
+      </div>
     `;
   }
 });
