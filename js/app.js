@@ -177,13 +177,15 @@ function signOut() {
 document.addEventListener("DOMContentLoaded", () => {
   const searchName = (name) => {
     const results = allocations.filter((allocation) => {
-      return allocation.deployment.some((member) => member.member.includes(name));
+      return allocation.deployment.some((member) => member.member === name);
     });
     return results;
   };
 
-  const nameToSearch = "payload.name";
+  const responsePayload = JSON.parse(localStorage.getItem("responsePayload"));
+  const nameToSearch = responsePayload.name;
   const searchResults = searchName(nameToSearch);
   const nextDiv = document.getElementById("next");
+  console.log(searchResults);
   nextDiv.innerHTML = JSON.stringify(searchResults);
 });
