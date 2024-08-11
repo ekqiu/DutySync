@@ -63,6 +63,10 @@ function decodeJwtResponse(token) {
 
   return JSON.parse(jsonPayload);
 }
+document.addEventListener("DOMContentLoaded", () => {
+  askNotificationPermission();
+  subscribeUserToPush();
+});
 
 // Ensure the Google Sign-In button is properly initialized
 document.addEventListener("DOMContentLoaded", () => {
