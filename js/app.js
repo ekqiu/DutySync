@@ -14,8 +14,8 @@ const allocations = [
 ];
 
 const displayAllocations = () => {
-  let output = `<div><h2>${allocations.date}</h2></div>`;
-  allocations.forEach(({ name, member }) => {
+  let output = `<div><h2>${allocations[0].date}</h2></div>`;
+  allocations[0].deployment.forEach(({ name, member }) => {
     output += `
       <div class="card">
         <h1 class="card--title">${name}</h1>
