@@ -1,4 +1,4 @@
-const content = document.querySelector(".content");
+const content = document.getElementById("content");
 const allocations = [
   {
     date: "11/8/2024",
