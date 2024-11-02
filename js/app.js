@@ -4,10 +4,10 @@ const responsePayload = JSON.parse(localStorage.getItem("responsePayload"));
 async function fetchWorkspaces() {
   const encodedUsername = encodeURIComponent(responsePayload.name);
   const ownerResponse = await fetch(
-    `https://ekqiu.hackclub.app/workspaces/${encodedUsername}`
+    `localhost:449971/workspaces/${encodedUsername}`
   );
   const memberResponse = await fetch(
-    `https://ekqiu.hackclub.app/workspaces/${encodedUsername}`
+    `localhost:449971/workspaces/${encodedUsername}`
   );
   if (!ownerResponse.ok || !memberResponse.ok) {
     throw new Error("Network response was not ok");
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nameToSearch = responsePayload.name;
   const searchResults = searchName(nameToSearch);
   const nextDiv = document.getElementById("next");
-  nextDiv.innerHTML = "";
+  //nextDiv.innerHTML = "";
 
   searchResults.forEach((result) => {
     const { date, time, name } = result;
