@@ -1,113 +1,59 @@
 const content = document.getElementById("content");
-const allocations = [
-  {
-    date: "11/8/2024",
-    time: "8:00 AM",
-    deployment: [
-      { name: "Foyer", member: "John" },
-      { name: "Canteen", member: "Jane" },
-      { name: "Library", member: "Mike" },
-      { name: "Carpark", member: "Evan Khee Bo Han (Bpghs)" },
-      { name: "Side Gate", member: "David" },
-      { name: "Main Gate", member: "Sarah" },
-      { name: "Corridor", member: "Alex" },
-      { name: "Hall", member: "Olivia" },
-      { name: "Staircase", member: "Daniel" },
-    ],
-  },
-  {
-    date: "12/8/2024",
-    time: "8:00 AM",
-    deployment: [
-      { name: "Foyer", member: "John" },
-      { name: "Canteen", member: "Jane" },
-      { name: "Library", member: "Mike" },
-      { name: "Carpark", member: "Evan Khee Bo Han (Bpghs)" },
-      { name: "Side Gate", member: "David" },
-      { name: "Main Gate", member: "Sarah" },
-      { name: "Corridor", member: "Alex" },
-      { name: "Hall", member: "Olivia" },
-      { name: "Staircase", member: "Daniel" },
-    ],
-  },
-  {
-    date: "13/8/2024",
-    time: "8:00 AM",
-    deployment: [
-      { name: "Foyer", member: "John" },
-      { name: "Canteen", member: "Jane" },
-      { name: "Library", member: "Mike" },
-      { name: "Carpark", member: "Evan Khee Bo Han (Bpghs)" },
-      { name: "Side Gate", member: "David" },
-      { name: "Main Gate", member: "Sarah" },
-      { name: "Corridor", member: "Alex" },
-      { name: "Hall", member: "Olivia" },
-      { name: "Staircase", member: "Daniel" },
-    ],
-  },
-  {
-    date: "14/8/2024",
-    time: "8:00 AM",
-    deployment: [
-      { name: "Foyer", member: "John" },
-      { name: "Canteen", member: "Jane" },
-      { name: "Library", member: "Mike" },
-      { name: "Carpark", member: "Evan Khee Bo Han (Bpghs)" },
-      { name: "Side Gate", member: "David" },
-      { name: "Main Gate", member: "Sarah" },
-      { name: "Corridor", member: "Alex" },
-      { name: "Hall", member: "Olivia" },
-      { name: "Staircase", member: "Daniel" },
-    ],
-  },
-  {
-    date: "15/8/2024",
-    time: "8:00 AM",
-    deployment: [
-      { name: "Foyer", member: "John" },
-      { name: "Canteen", member: "Jane" },
-      { name: "Library", member: "Mike" },
-      { name: "Carpark", member: "Evan Khee Bo Han (Bpghs)" },
-      { name: "Side Gate", member: "David" },
-      { name: "Main Gate", member: "Sarah" },
-      { name: "Corridor", member: "Alex" },
-      { name: "Hall", member: "Olivia" },
-      { name: "Staircase", member: "Daniel" },
-    ],
-  },
-];
+const responsePayload = JSON.parse(localStorage.getItem("responsePayload"));
 
-const displayAllocations = () => {
-  allocations.forEach(({ date, time, deployment }) => {
-    let output = `
-      <div>
-        <h2>${date} ${time}</h2>
-      </div>
-      <div class="content">
-    `;
-    deployment.forEach(({ name, member }) => {
-      output += `
-        <div class="card">
-          <h1 class="card--title">${name}</h1>
-          <p class="card--member">${member}</p>
-        </div>
-      `;
+async function fetchWorkspaces() {
+  const encodedUsername = encodeURIComponent(responsePayload.name);
+  const ownerResponse = await fetch(
+    `https://ekqiu.hackclub.app/workspaces/${encodedUsername}`
+  );
+  const memberResponse = await fetch(
+    `https://ekqiu.hackclub.app/workspaces/${encodedUsername}`
+  );
+  if (!ownerResponse.ok || !memberResponse.ok) {
+    throw new Error("Network response was not ok");
+  }
+  const owned = await ownerResponse.json();
+  const member = await memberResponse.json();
+
+  return { owned, member };
+}
+
+function displayWorkspaces() {
+  fetchWorkspaces().then(({ owned, member }) => {
+    const dashboard = document.getElementById("dashboard");
+    dashboard.innerHTML = "";
+
+    owned.forEach((workspace) => {
+      const div = document.createElement("div");
+      div.innerHTML = `<a>You own ${workspace.name}</a>`;
+      dashboard.appendChild(div);
     });
-    output += `</div>`;
-    content.innerHTML += output;
+
+    member.forEach((workspace) => {
+      const div = document.createElement("div");
+      div.innerHTML = `<a>You are a member of ${workspace.name}</a>`;
+      dashboard.appendChild(div);
+    });
   });
-};
+}
 
 if (window.location.href.includes("dashboard.html")) {
-  document.addEventListener("DOMContentLoaded", displayAllocations);
+  document.addEventListener("DOMContentLoaded", displayWorkspaces);
 }
 
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
-    navigator.serviceWorker
-      .register("/serviceWorker.js")
-      .then((res) => console.log("service worker registered"))
-      .catch((err) => console.log("service worker not registered", err));
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/serviceWorker.js").then(
+      (registration) => {
+        console.log(
+          "ServiceWorker registration successful with scope: ",
+          registration.scope
+        );
+      },
+      (err) => {
+        console.log("ServiceWorker registration failed: ", err);
+      }
+    );
   });
 }
 
@@ -140,6 +86,17 @@ function decodeJwtResponse(token) {
 document.addEventListener("DOMContentLoaded", () => {
   const responsePayload = JSON.parse(localStorage.getItem("responsePayload"));
   if (responsePayload) {
+    const profile = document.getElementById("profile");
+    profile.innerHTML = `
+      <div style="display: flex;">
+      <div>
+        <img src="${responsePayload.picture}" alt="Profile Image" class="img-fluid" style="border-radius: 50%; width: 3vh;">
+      </div>
+      <div style="display: grid; align-items: center;">
+        <a style="margin: 0px 15px 0px 15px;">${responsePayload.name}</a>
+      </div>
+      </div>
+`;
     const contentElement = document.getElementById("welcome");
     contentElement.innerHTML = `
       <div style="display: flex;">
@@ -176,15 +133,18 @@ function signOut() {
 
 document.addEventListener("DOMContentLoaded", () => {
   const searchName = (name) => {
-    const results = allocations.filter((allocation) => {
-      return allocation.deployment.some((member) => member.member === name);
-    }).map((allocation) => {
-      return {
-        date: allocation.date,
-        time: allocation.time,
-        name: allocation.deployment.find((member) => member.member === name).name
-      };
-    });
+    const results = allocations
+      .filter((allocation) => {
+        return allocation.deployment.some((member) => member.member === name);
+      })
+      .map((allocation) => {
+        return {
+          date: allocation.date,
+          time: allocation.time,
+          name: allocation.deployment.find((member) => member.member === name)
+            .name,
+        };
+      });
     return results;
   };
 
@@ -194,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextDiv = document.getElementById("next");
   nextDiv.innerHTML = "";
 
-  searchResults.forEach(result => {
+  searchResults.forEach((result) => {
     const { date, time, name } = result;
     const div = document.createElement("div");
     div.textContent = `On ${date} at ${time}, you have ${name} duty.`;
@@ -202,3 +162,19 @@ document.addEventListener("DOMContentLoaded", () => {
     nextDiv.appendChild(div);
   });
 });
+
+function checkLoginStatus() {
+  const responsePayload = JSON.parse(localStorage.getItem("responsePayload"));
+  const signInButton = document.getElementById("google-signin-button");
+  const profile = document.getElementById("profile-menu");
+  if (responsePayload) {
+    signInButton.style.display = "none";
+    profile.style.display = "block";
+  } else {
+    signInButton.style.display = "block";
+    profile.style.display = "none";
+  }
+}
+
+window.addEventListener("DOMContentLoaded", checkLoginStatus);
+window.addEventListener("DOMContentLoaded", fetchAllocations);

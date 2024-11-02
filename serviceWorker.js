@@ -1,6 +1,23 @@
 const staticDutySync = "dutysync-v1";
-const assets = ["/", "index.html", "/css/styles.css", "/js/app.js", "contact.html", "dashboard.html"
-  
+const assets = [
+  "/",
+  "index.html",
+  "contact.html",
+  "dashboard.html",
+  "features.html",
+  "privacy.html",
+  "tos.html",
+  "/css/styles.css",
+  "/js/app.js",
+  "/images/icons/icon-72x72.png",
+  "/images/icons/icon-96x96.png",
+  "/images/icons/icon-128x128.png",
+  "/images/icons/icon-144x144.png",
+  "/images/icons/icon-152x152.png",
+  "/images/icons/icon-192x192.png",
+  "/images/icons/icon-384x384.png",
+  "/images/icons/icon-1024x1024.svg",
+  "/images/favicon.ico",
 ];
 
 self.addEventListener("install", (installEvent) => {
@@ -17,7 +34,10 @@ self.addEventListener("fetch", (fetchEvent) => {
       if (res) {
         return res;
       }
-      return fetch(fetchEvent.request)
+      return fetch(fetchEvent.request).catch((error) => {
+        console.error("You are offline", error);
+        return caches.match("offline.html");
+      });
     })
   );
 });

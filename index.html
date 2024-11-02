@@ -43,13 +43,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="contact.html">Contact</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="google-signin-button">
                     <div id="g_id_onload" data-client_id="123316970403-lq0mb7tt0n20j4he2tnjovpovn7b92ia.apps.googleusercontent.com"
                         data-context="signin" data-ux_mode="popup" data-callback="handleCredentialResponse" data-auto_prompt="false" data-use_fedcm_for_prompt="true">
                     </div>
                     
                     <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline" data-text="signin"
                         data-size="large" data-logo_alignment="left">
+                    </div>
+                    
+                </li>
+                <li class="dropdown" id="profile-menu" style="display: flex; align-content: center;">
+                    <div class="profile dropdown-toggle" id="profile" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        
+                    </div>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="dashboard.html">Dashboard</a>
+                        <a class="dropdown-item" href="#" id="signOut" onclick="signOut()">Sign Out</a>
                     </div>
                 </li>
         </div>

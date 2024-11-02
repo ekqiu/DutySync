@@ -49,3 +49,13 @@ a {
     background-color: #d4d4d4;
     width: 100%;
 }
+
+.profile {
+    margin-left: 15px;
+    border: #222 solid 1px !important;
+    border-radius: 20px;
+}
+
+#profile::after {
+    display: none;
+}
