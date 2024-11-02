@@ -26,6 +26,7 @@ Receive notifications for upcoming duties, ensuring that no task is forgotten.
 View historical data of completed duties for personal tracking and accountability.
 
 # Getting Started
+
 ## Installation
 Access the dashboard at https://dutysync.vercel.app/.
 
