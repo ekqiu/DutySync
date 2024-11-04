@@ -1,5 +1,6 @@
 # DutySync
 DutySync is a user-friendly application designed to help organizations and teams create duty rosters, manage attendance, and keep track of assigned duties. Whether you're organizing a student council, a workplace team, or a volunteer group, DutySync makes it easy to stay organized and ensure that every task is covered.
+The backend of this project is still on the works, further updates are coming soon!
 
 # Features
 1. Personal Duty Tracker
